@@ -202,7 +202,7 @@ CommandLine.TextStrokeTransparency = 0.000
 
 -- Scripts:
 
-local function YZJQ_fake_script() -- Main2.API_Handler 
+local function JAGQWDK_fake_script() -- Main2.API_Handler 
 	local script = Instance.new('LocalScript', Main2)
 
 	script.Name = "API_Handler"
@@ -257,6 +257,10 @@ local function YZJQ_fake_script() -- Main2.API_Handler
 						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame  * CFrame.new(0,0,2)
 					end
 				end
+			elseif args[1] == "restart" then
+				pcall(function() getgenv().InSanity  = false end)
+				loadstring(game:HttpGet(('https://raw.githubusercontent.com/BrodyBox/JaidonsUI/main/InSanity'),true))()
+				script.Parent.Parent.Parent:Destroy()
 			end
 		end
 		CMDLINE.Text = "Command Line"
@@ -398,4 +402,4 @@ local function YZJQ_fake_script() -- Main2.API_Handler
 		MainFrame.Rotation = math.cos(tick()-4/.4)*-2
 	end
 end
-coroutine.wrap(YZJQ_fake_script)()
+coroutine.wrap(JAGQWDK_fake_script)()
