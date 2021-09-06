@@ -1,0 +1,401 @@
+--// LOAD CHECK \\--
+if InSanity and not _G.InSanity_Debug == true then
+	error("InSanity is already running.",0)
+	return
+end
+pcall(function() getgenv().InSanity  = true end)
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+--// GUI LOADER \\--
+local InSanity = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Main2 = Instance.new("Frame")
+local Music = Instance.new("ScrollingFrame")
+local Visual = Instance.new("Frame")
+local Visual_2 = Instance.new("Frame")
+local Visual_3 = Instance.new("Frame")
+local Visual_4 = Instance.new("Frame")
+local Visual_5 = Instance.new("Frame")
+local Visual_6 = Instance.new("Frame")
+local Visual_7 = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Help = Instance.new("TextLabel")
+local Title = Instance.new("TextLabel")
+local CurrentName = Instance.new("TextLabel")
+local Logo = Instance.new("ImageLabel")
+local CommandLine = Instance.new("TextBox")
+
+--Properties:
+
+InSanity.Name = "InSanity"
+InSanity.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+InSanity.DisplayOrder = 999999999
+
+Main.Name = "Main"
+Main.Parent = InSanity
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main.BackgroundTransparency = 1.000
+Main.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Main.BorderSizePixel = 2
+Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+Main.Size = UDim2.new(0, 350, 0, 200)
+
+Main2.Name = "Main2"
+Main2.Parent = Main
+Main2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main2.BorderColor3 = Color3.fromRGB(255, 255, 255)
+Main2.BorderSizePixel = 2
+Main2.Position = UDim2.new(0.5, 0, 0.5, 0)
+Main2.Size = UDim2.new(0, 350, 0, 200)
+Main2.ZIndex = 2
+
+Music.Name = "Music"
+Music.Parent = Main2
+Music.Active = true
+Music.AnchorPoint = Vector2.new(0.5, 1)
+Music.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Music.BackgroundTransparency = 1.000
+Music.BorderSizePixel = 0
+Music.Position = UDim2.new(0.5, 0, 0, 0)
+Music.Size = UDim2.new(1, 0, 0, 0)
+Music.CanvasSize = UDim2.new(0, 0, -1, 0)
+Music.ScrollBarThickness = 0
+
+Visual.Name = "Visual"
+Visual.Parent = Music
+Visual.AnchorPoint = Vector2.new(0.5, 1)
+Visual.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual.BorderSizePixel = 0
+Visual.Position = UDim2.new(0.349999994, 0, 1, 0)
+Visual.Size = UDim2.new(0, 40, 0, 10)
+
+Visual_2.Name = "Visual"
+Visual_2.Parent = Music
+Visual_2.AnchorPoint = Vector2.new(0.5, 1)
+Visual_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual_2.BorderSizePixel = 0
+Visual_2.Position = UDim2.new(0.649999976, 0, 1, 0)
+Visual_2.Size = UDim2.new(0, 40, 0, 10)
+
+Visual_3.Name = "Visual"
+Visual_3.Parent = Music
+Visual_3.AnchorPoint = Vector2.new(0.5, 1)
+Visual_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual_3.BorderSizePixel = 0
+Visual_3.Position = UDim2.new(0.800000012, 0, 1, 0)
+Visual_3.Size = UDim2.new(0, 40, 0, 10)
+
+Visual_4.Name = "Visual"
+Visual_4.Parent = Music
+Visual_4.AnchorPoint = Vector2.new(0.5, 1)
+Visual_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual_4.BorderSizePixel = 0
+Visual_4.Position = UDim2.new(0.200000003, 0, 1, 0)
+Visual_4.Size = UDim2.new(0, 40, 0, 10)
+
+Visual_5.Name = "Visual"
+Visual_5.Parent = Music
+Visual_5.AnchorPoint = Vector2.new(0.5, 1)
+Visual_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual_5.BorderSizePixel = 0
+Visual_5.Position = UDim2.new(0.5, 0, 1, 0)
+Visual_5.Size = UDim2.new(0, 40, 0, 10)
+
+Visual_6.Name = "Visual"
+Visual_6.Parent = Music
+Visual_6.AnchorPoint = Vector2.new(0.5, 1)
+Visual_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual_6.BorderSizePixel = 0
+Visual_6.Position = UDim2.new(0.0500000007, 0, 1, 0)
+Visual_6.Size = UDim2.new(0, 40, 0, 10)
+
+Visual_7.Name = "Visual"
+Visual_7.Parent = Music
+Visual_7.AnchorPoint = Vector2.new(0.5, 1)
+Visual_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Visual_7.BorderSizePixel = 0
+Visual_7.Position = UDim2.new(0.949999988, 0, 1, 0)
+Visual_7.Size = UDim2.new(0, 40, 0, 10)
+
+UIListLayout.Parent = Music
+UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+UIListLayout.Padding = UDim.new(0, 10)
+
+Help.Name = "Help"
+Help.Parent = Main2
+Help.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Help.BackgroundTransparency = 1.000
+Help.BorderSizePixel = 0
+Help.Position = UDim2.new(0, 0, 0, 35)
+Help.Size = UDim2.new(0, 250, 0, 25)
+Help.Visible = false
+Help.ZIndex = 3
+Help.Font = Enum.Font.Arcade
+Help.Text = "Kill InSanity: K"
+Help.TextColor3 = Color3.fromRGB(255, 255, 255)
+Help.TextSize = 20.000
+
+Title.Name = "Title"
+Title.Parent = Main2
+Title.AnchorPoint = Vector2.new(0.5, 1)
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.5, 0, 1, 0)
+Title.Size = UDim2.new(0, 250, 0, 25)
+Title.ZIndex = 4
+Title.Font = Enum.Font.Arcade
+Title.Text = "InSanity GUI"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 20.000
+Title.TextStrokeTransparency = 0.000
+
+CurrentName.Name = "CurrentName"
+CurrentName.Parent = Main2
+CurrentName.AnchorPoint = Vector2.new(0.5, 1)
+CurrentName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CurrentName.BackgroundTransparency = 1.000
+CurrentName.BorderSizePixel = 0
+CurrentName.Position = UDim2.new(0.5, 0, 0, 25)
+CurrentName.Size = UDim2.new(0, 250, 0, 25)
+CurrentName.ZIndex = 4
+CurrentName.Font = Enum.Font.Arcade
+CurrentName.Text = "Current UI Name: Insanity"
+CurrentName.TextColor3 = Color3.fromRGB(255, 255, 255)
+CurrentName.TextSize = 20.000
+CurrentName.TextStrokeTransparency = 0.000
+
+Logo.Name = "Logo"
+Logo.Parent = Main2
+Logo.AnchorPoint = Vector2.new(0, 1)
+Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Logo.BackgroundTransparency = 1.000
+Logo.BorderSizePixel = 0
+Logo.Position = UDim2.new(0, 0, 1, 0)
+Logo.Size = UDim2.new(0, 50, 0, 50)
+Logo.ZIndex = 3
+Logo.Image = "http://www.roblox.com/asset/?id=7413861630"
+Logo.ScaleType = Enum.ScaleType.Fit
+
+CommandLine.Name = "CommandLine"
+CommandLine.Parent = Main2
+CommandLine.AnchorPoint = Vector2.new(0.5, 0.5)
+CommandLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CommandLine.BackgroundTransparency = 1.000
+CommandLine.BorderSizePixel = 0
+CommandLine.Position = UDim2.new(0.5, 0, 0.75, 0)
+CommandLine.Size = UDim2.new(0, 200, 0, 30)
+CommandLine.ZIndex = 4
+CommandLine.Font = Enum.Font.Arcade
+CommandLine.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+CommandLine.PlaceholderText = "Command Line"
+CommandLine.Text = ""
+CommandLine.TextColor3 = Color3.fromRGB(255, 255, 255)
+CommandLine.TextSize = 20.000
+CommandLine.TextStrokeTransparency = 0.000
+
+-- Scripts:
+
+local function YZJQ_fake_script() -- Main2.API_Handler 
+	local script = Instance.new('LocalScript', Main2)
+
+	script.Name = "API_Handler"
+	script.Parent.Parent.Parent.Parent = game:FindFirstChild("CoreGui")
+	--// COMMAND STUFF \\--
+	local MusicVolume = Instance.new("Sound")
+	local CMDLINE = script.Parent.CommandLine
+	local CanOpenUI = true
+	CMDLINE.FocusLost:Connect(function(enterPressed)
+		CanOpenUI = true
+		if enterPressed then
+			local loweredString = string.lower(CMDLINE.Text)
+			local args = string.split(loweredString," ")
+			if args[1] == "walkspeed" then
+				if args[2] then
+					game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = args[2]
+				end
+			elseif args[1] == "volume" then
+				if args[2] then
+					MusicVolume.Volume = args[2]
+				end
+			elseif args[1] == "mute" then
+				MusicVolume.Volume = 0
+			elseif args[1] == "unmute" then
+				MusicVolume.Volume = 1
+			elseif args[1] == "close" then
+				pcall(function() getgenv().InSanity  = false end)
+				script.Parent.Parent.Parent:Destroy()
+			elseif args[1] == "serverhop" then
+				local x = {}
+				for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+					if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+						x[#x + 1] = v.id
+					end
+				end
+				if #x > 0 then
+					game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+				else
+					return print("Couldn't find a server")
+				end
+			elseif args[1] == "song" then
+				if args[2] then
+					MusicVolume.SoundId = 'rbxassetid://'..args[2]
+					MusicVolume.TimePosition = 0
+				end
+			elseif args[1] == "defsong" then
+				MusicVolume.SoundId = 'rbxassetid://4849253409'
+				MusicVolume.TimePosition = 0
+			elseif args[1] == "goto" then
+				for _,player in pairs(game:GetService("Players"):GetPlayers()) do
+					if string.sub(string.lower(player.Name), 1, string.len(args[2])) == string.lower(args[2]) then
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame  * CFrame.new(0,0,2)
+					end
+				end
+			end
+		end
+		CMDLINE.Text = "Command Line"
+	end)
+	CMDLINE.Focused:Connect(function()
+		CanOpenUI = false
+	end)
+	
+	--// VALID API SPOT \\--
+	
+	
+	--// VALID API SPOT \\--
+	
+	
+	--// UNDERLINE API \\--
+	local function materializet(textbox, color, revertedtext)
+	
+		local parent = textbox;
+		local mouse = game:GetService'Players'.LocalPlayer:GetMouse();
+		local underlinecolor = color or parent.TextColor3;
+		local ptext = revertedtext or parent.Text
+		parent.Visible = true;
+		parent.Active = true;
+		parent.Selectable = true
+		local function CreateInstance(cls,props)	local inst = Instance.new(cls)	for i,v in pairs(props) do inst[i] = v end return inst end
+		local Underline = CreateInstance("Frame", {Name="Underline",ZIndex=parent.ZIndex, Parent=parent,BackgroundColor3=underlinecolor, BorderSizePixel=0,Position=UDim2.new(0,0,1,0),Size=UDim2.new(0, 0, 0, 2)})
+		local UnderlineBase = CreateInstance("Frame", {Name="Underline",ZIndex=parent.ZIndex,Parent= parent,BackgroundColor3=underlinecolor,BackgroundTransparency=0.85,BorderSizePixel=0,Position=UDim2.new(0,0,1,0),Size=UDim2.new(1, 0, 0, 1)})
+		local xsize = UnderlineBase.AbsoluteSize.X;
+	
+		parent.Focused:connect(function()
+			if Underline.Size.X.Scale == 1 then return end
+			parent.PlaceholderText= ""
+			local x = (mouse.X) - (parent.AbsolutePosition.X);Underline.BackgroundTransparency = 0;Underline.Position = UDim2.new(0,x,1,0);wait()
+			Underline:TweenSizeAndPosition(UDim2.new(1, 0, 0, 2),UDim2.new(0, 0, 1, 0),"Out","Quint",0.2)
+		end)
+		parent.FocusLost:connect(function()
+			if parent.Text == "" then parent.PlaceholderColor3 = parent.TextColor3	parent.PlaceholderText = ptext	end
+			game:GetService("TweenService"):Create(Underline,TweenInfo.new(0.15,Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0,false, 0 ),{BackgroundTransparency = 1}):Play()	
+			wait(0.15)	Underline.Size = UDim2.new(0,0,0,2)
+		end)
+	
+	end
+	-- Settings --
+	local cmdline = script.Parent.CommandLine
+	materializet(cmdline, Color3.new(1,1,1), "Command Line")
+	
+	--// GUI NAME \\--
+	local function rand()
+		local array = {}
+		for i = 1,21 do
+			array[i] = string.char(math.random(32,126))
+			if i == 11 then
+				array[i] = "> InSanity <"
+			end
+		end
+		return table.concat(array)
+	end
+	game:GetService("RunService").RenderStepped:Connect(function()
+		local CurrentName = rand()
+		script.Parent.Parent.Parent.Name  = CurrentName
+		script.Parent.CurrentName.Text = CurrentName
+	end)
+	
+	--// RANDOM TEXT \\--
+	local randomtext = {"Furry > Neko","Base of the Box","When the when","Bruh moment","A furry made this","Cheezit game","This UI is cool -me"}
+	local selectedtext = randomtext[math.random(1,#randomtext)]
+	script.Parent.Title.Text = selectedtext
+	
+	--// OPEN / CLOSE \\--
+	local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local EnableDisableCheck = true
+	local FrameToMove = script.Parent.Parent
+	UserInputService.InputBegan:Connect(function(Input)
+		if Input.KeyCode == Enum.KeyCode.RightBracket then
+			if CanOpenUI == true then
+				if EnableDisableCheck == true then
+					EnableDisableCheck = false
+					FrameToMove:TweenPosition(UDim2.new(0.5,0,1.5,0), Enum.EasingDirection.In, Enum.EasingStyle.Back, .25, true, nil)
+					--FrameToMove:TweenPosition(UDim2.new(0.5,0,0.4,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, .25, true, nil)
+				elseif EnableDisableCheck == false then
+					EnableDisableCheck = true
+					FrameToMove:TweenPosition(UDim2.new(0.5,0,0.5,0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, .25, true, nil)
+					 --FrameToMove:TweenPosition(UDim2.new(0.5,0,1.5,0), Enum.EasingDirection.InOut, Enum.EasingStyle.Sine, .25, true, nil)
+				end
+			end
+		end
+	end)
+	UserInputService.InputBegan:Connect(function(Input)
+		if Input.KeyCode == Enum.KeyCode.LeftBracket then
+			if CanOpenUI == true then
+				EnableDisableCheck = true
+				FrameToMove:TweenPosition(UDim2.new(0.5,0,0.5,0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, .25, true, nil)
+				CMDLINE:CaptureFocus()
+				wait()
+				CMDLINE.Text = ""
+			end
+		end
+	end)
+	
+	GuiService.MenuClosed:Connect(function()
+		CanOpenUI = true
+		if EnableDisableCheck == true then
+			FrameToMove:TweenPosition(UDim2.new(0.5,0,0.5,0), Enum.EasingDirection.Out, Enum.EasingStyle.Back, .25, true, nil)
+		end
+	end)
+	GuiService.MenuOpened:Connect(function()
+		CanOpenUI = false
+		FrameToMove:TweenPosition(UDim2.new(0.5,0,1.5,0), Enum.EasingDirection.In, Enum.EasingStyle.Back, .25, true, nil)
+		wait(.25)
+	end)
+	
+	--// MUSIC VISUALS \\--
+	MusicVolume.Name = 'Song'
+	MusicVolume.Parent = script
+	MusicVolume.SoundId = 'rbxassetid://4849253409'
+	MusicVolume.Looped = true
+	MusicVolume.Playing = true
+	MusicVolume.Volume = 1
+	local MusicStore = script.Parent.Music
+	game:GetService("RunService").RenderStepped:Connect(function()  
+		local MusicLoudness = MusicVolume.PlaybackLoudness * 0.1
+		--[[local RandomizationPower = 0
+		local RandomDeduction = RandomizationPower]]--
+		for i, Visual in pairs(MusicStore:GetChildren()) do 
+			if Visual then
+				if Visual:IsA("Frame") then
+					Visual.Size = UDim2.new(0,40,0,MusicLoudness + math.random(-5,5))
+				end
+			end
+		end
+	end)
+	
+	--// GUI MOVEMENT \\--
+	local runservice = game:GetService("RunService")
+	local MainFrame = script.Parent
+	while runservice.Stepped:wait() do
+		MainFrame.Position = UDim2.new(math.cos(tick()-.5/.5)*.1,.1+math.sin(tick()-(.5/.5)*2)/.5,0)
+		MainFrame.Rotation = math.cos(tick()-4/.4)*-2
+	end
+end
+coroutine.wrap(YZJQ_fake_script)()
