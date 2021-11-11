@@ -1,0 +1,42 @@
+local GUI = game:GetObjects("rbxassetid://7941957587")[1]
+GUI.Parent = game:GetService("CoreGui")
+
+local viewportcamera = Instance.new("Camera",script)
+viewportcamera.CameraType = Enum.CameraType.Scriptable
+local yintager = .4
+local xintager = 2
+local r = 0
+local item = game:GetObjects("rbxassetid://7949181184")[1]
+--[[
+local item = Instance.new("Model",GUI.Main.Port)
+local itempart = game:GetObjects("rbxassetid://7949181184")[1]
+itempart.Parent = item
+]]--
+item.PrimaryPart = item["HumRoot"]
+local viewportpoint = Vector3.new(0,0,0)
+local viewportframe = GUI.Main.Port
+viewportframe.CurrentCamera = viewportcamera
+item:SetPrimaryPartCFrame(CFrame.new(viewportpoint))
+item.Parent = viewportframe
+game:GetService("RunService").RenderStepped:Connect(function()
+	local cfrane, size = item:GetBoundingBox()
+	local max = math.max(size.X,size.Y,size.Z)
+	local distance = (max/math.tan(math.rad(viewportcamera.FieldOfView))) * xintager
+	local currentdistance = (max/2) + distance
+	viewportcamera.CFrame = CFrame.Angles(0,math.rad(r),0) * CFrame.new(viewportpoint + Vector3.new(0,(currentdistance*yintager),currentdistance),viewportpoint)
+	r = r +1
+end)
+
+local BGM = Instance.new("Sound")
+BGM.SoundId = 'rbxassetid://4550046224'
+BGM.Parent = GUI
+BGM.Looped = true
+BGM:Play()
+
+GUI.Main2.Close.MouseButton1Click:Connect(function()
+    GUI:Destroy()
+end)
+
+GUI.Main2.Launch.MouseButton1Click:Connect(function()
+    print("No actual input!")
+end)
