@@ -1,17 +1,14 @@
 local GUI = game:GetObjects("rbxassetid://7941957587")[1]
 GUI.Parent = game:GetService("CoreGui")
 
+
+--// VIEWPORT CAMERA 1 - DUMMY \\--
 local viewportcamera = Instance.new("Camera",script)
 viewportcamera.CameraType = Enum.CameraType.Scriptable
 local yintager = .4
 local xintager = 2
 local r = 0
 local item = game:GetObjects("rbxassetid://7949181184")[1]
---[[
-local item = Instance.new("Model",GUI.Main.Port)
-local itempart = game:GetObjects("rbxassetid://7949181184")[1]
-itempart.Parent = item
-]]--
 item.PrimaryPart = item["HumRoot"]
 local viewportpoint = Vector3.new(0,0,0)
 local viewportframe = GUI.Main.Port
@@ -26,6 +23,30 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	viewportcamera.CFrame = CFrame.Angles(0,math.rad(r),0) * CFrame.new(viewportpoint + Vector3.new(0,(currentdistance*yintager),currentdistance),viewportpoint)
 	r = r +1
 end)
+--\\ VIEWPORT CAMERA 1 - DUMMY //--
+
+--// VIEWPORT CAMERA 2 - SCATTERGUN \\--
+local viewportcamera2 = Instance.new("Camera",script)
+viewportcamera2.CameraType = Enum.CameraType.Scriptable
+local yintager2 = .4
+local xintager2 = 2
+local r2 = 0
+local item2 = game:GetObjects("rbxassetid://7963313754")[1]
+item2.PrimaryPart = item2["Texture"]
+local viewportpoint2 = Vector3.new(0,0,0)
+local viewportframe2 = GUI.ScatterGunInfo.Port
+viewportframe2.CurrentCamera = viewportcamera2
+item2:SetPrimaryPartCFrame(CFrame.new(viewportpoint2))
+item2.Parent = viewportframe2
+game:GetService("RunService").RenderStepped:Connect(function()
+	local cfrane2, size2 = item2:GetBoundingBox()
+	local max2 = math.max(size2.X,size2.Y,size2.Z)
+	local distance2 = (max2/math.tan(math.rad(viewportcamera2.FieldOfView))) * xintager2
+	local currentdistance2 = (max2/2) + distance2
+	viewportcamera2.CFrame = CFrame.Angles(0,math.rad(r),0) * CFrame.new(viewportpoint2 + Vector3.new(0,(currentdistance2*yintager2),currentdistance2),viewportpoint2)
+	r2 = r2 +1
+end)
+--\\ VIEWPORT CAMERA 2 - SCATTERGUN //--
 
 local BGM = Instance.new("Sound")
 BGM.SoundId = 'rbxassetid://4550046224'
