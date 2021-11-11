@@ -1,3 +1,9 @@
+if DummyLauncherV2_356c826f0eb04d9b99d7b70204192817 == true then
+	print("Launcher already open!")
+	return
+end
+pcall(function() getgenv().DummyLauncherV2_356c826f0eb04d9b99d7b70204192817  = true end)
+
 local GUI = game:GetObjects("rbxassetid://7941957587")[1]
 GUI.Parent = game:GetService("CoreGui")
 
@@ -55,6 +61,7 @@ BGM.Looped = true
 BGM:Play()
 
 GUI.Main2.Close.MouseButton1Click:Connect(function()
+    pcall(function() getgenv().DummyLauncherV2_356c826f0eb04d9b99d7b70204192817  = false end)
     GUI:Destroy()
 end)
 
