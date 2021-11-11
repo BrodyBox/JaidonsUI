@@ -61,3 +61,12 @@ end)
 GUI.Main2.Launch.MouseButton1Click:Connect(function()
     print("No actual input!")
 end)
+
+GUI.ScatterGunInfo.OpenLink.MouseButton1Click:Connect(function()
+    setclipboard("https://www.roblox.com/catalog/6202406163/Gray-Sci-Fi-Scattergun")
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Notification";
+    Text = "Copied to clipboard";
+    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+Duration = 16;
+end)
