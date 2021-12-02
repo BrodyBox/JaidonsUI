@@ -1,8 +1,3 @@
---[[
-local Ver = nil
-print("Jaidon's UI V",Ver)
-]]--
-
 local Gui = game:GetObjects("rbxassetid://8154933827")[1]
 Gui.Parent = game:GetService("CoreGui")
 Gui.Name = game.Players.LocalPlayer.Name.."'s Viewport"
@@ -61,7 +56,4 @@ local death; death = char.Humanoid.Died:Connect(function()
     death:Disconnect(); -- no memory leaks :DD
 	rs:UnbindFromRenderStep(a);
 	vpf.Parent:Destroy();
-    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/BrodyBox/JaidonsUI/main/Viewport'))()
-    script:Destroy()
 end);
