@@ -1,2 +1,67 @@
+--[[
 local Ver = nil
 print("Jaidon's UI V",Ver)
+]]--
+
+local Gui = game:GetObjects("rbxassetid://8154933827")[1]
+Gui.Parent = game:GetService("CoreGui")
+Gui.Name = game.Players.LocalPlayer.Name.."'s Viewport"
+
+repeat wait() until game:IsLoaded();
+local vpf = Gui["Viewport"];
+local cam = Instance.new("Camera");
+cam.Name = "";
+cam.Parent = vpf;
+vpf.CurrentCamera = cam;
+local wm = vpf["WorldModel"];
+
+local char = game:GetService("Players").LocalPlayer.Character
+if not char then return; end;
+
+char.Archivable = true;
+local f = char:Clone();
+char.Archivable = false;
+f.Parent = wm;
+for i,v in pairs(f:GetDescendants()) do
+	if v:IsA("Motor6D") or v:IsA("Weld") or v:IsA("Attachment") then
+		v:Destroy();
+	elseif v:IsA("BasePart") then
+		v.Anchored = true
+	end;
+end;
+
+for i,v in pairs(char:GetDescendants()) do
+	if v:IsA("BasePart") then
+		v.Transparency = 1;
+		v.CanCollide = false;
+		v.CastShadow = false;
+	end;
+end;
+
+local function grs()
+	local hs = game:GetService("HttpService");
+	return string.gsub(hs:GenerateGUID(false), "-", "");
+end
+
+vpf.Name = grs();cam.Name = grs();wm.Name = grs();
+
+local rs = game:GetService("RunService");
+local a = grs();
+rs:BindToRenderStep(a, Enum.RenderPriority.Camera.Value+1, function()
+	cam.CFrame = workspace.CurrentCamera.CFrame;
+	
+	for i,v in pairs(f:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.CFrame = char:FindFirstChild(v.Name,true).CFrame;
+		end;
+	end;
+end);
+
+local death; death = char.Humanoid.Died:Connect(function()
+    death:Disconnect(); -- no memory leaks :DD
+	rs:UnbindFromRenderStep(a);
+	vpf.Parent:Destroy();
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/BrodyBox/JaidonsUI/main/Viewport'))()
+    script:Destroy()
+end);
