@@ -145,11 +145,11 @@ if DeadChar:FindFirstChild("Animate") then DeadChar:FindFirstChild("Animate"):De
 local Collider
 function UnCollide()
     if HumanDied then Collider:Disconnect(); return end
-    --[[for _,Parts in next, CloneChar:GetChildren() do
+    for _,Parts in next, CloneChar:GetChildren() do
         if Parts:IsA("BasePart") then
             Parts.CanCollide = false 
         end 
-    end]]
+    end
     for _,Parts in next, DeadChar:GetChildren() do
         if Parts:IsA("BasePart") then
         Parts.CanCollide = false
